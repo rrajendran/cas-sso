@@ -1,10 +1,11 @@
-package com.capella.userservice;
+package com.capella.database.userservice;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,16 +14,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.capella.database.repositories.UserDao;
+
 
 @Service("springUserService")
 public class SpringUserService implements UserDetailsService {
 
 private static final Logger LOGGER = LoggerFactory
 		.getLogger(SpringUserService.class);
-
+	@Autowired
+	private UserDao userDao;
+	
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		return  new User(username, "welcome1", getAuthorities(1));
+		com.capella.database.entity.User user = userDao.findUser(username);
+		if(user != null)
+			return  new User(user.getUsername(), user.getPassword(), getAuthorities(user.getAuthorities()));
+		return null;
 	}
 
 	/**
@@ -30,8 +38,8 @@ private static final Logger LOGGER = LoggerFactory
 	 * @param role the numerical role
 	 * @return a collection of {@link GrantedAuthority
 	 */
-	public Collection<? extends GrantedAuthority> getAuthorities(Integer role) {
-		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role));
+	public Collection<? extends GrantedAuthority> getAuthorities(String authorities) {
+		List<GrantedAuthority> authList = getGrantedAuthorities(authorities.split(","));
 		return authList;
 	}
 	/**
@@ -54,7 +62,7 @@ private static final Logger LOGGER = LoggerFactory
 	 * @param roles {@link String} of roles
 	 * @return list of granted authorities
 	 */
-	public static List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
+	public static List<GrantedAuthority> getGrantedAuthorities(String[] roles) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String role : roles) {
 			authorities.add(new SimpleGrantedAuthority(role));

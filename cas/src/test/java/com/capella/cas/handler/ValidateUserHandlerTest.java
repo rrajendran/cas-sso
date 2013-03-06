@@ -10,7 +10,6 @@ import junit.framework.Assert;
 import org.jasig.cas.authentication.handler.AuthenticationException;
 import org.jasig.cas.authentication.principal.UsernamePasswordCredentials;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import com.capella.database.repositories.UserDao;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/com/capella/database/config/applicationContext.xml")
 @TransactionConfiguration(defaultRollback=false)
-@Ignore
 public class ValidateUserHandlerTest {
 	
 	private static final String USER_NAME = "admin";
@@ -38,7 +36,8 @@ public class ValidateUserHandlerTest {
 	
 	@Before
 	public void setUp(){
-		User user = new User(USER_NAME,PASSWORD);
+		userDao.delete();
+		User user = new User(USER_NAME,PASSWORD, "ROLE_USER,ROLE_SUPERVISOR");
 		userDao.save(user);
 		List<User> findAll = userDao.findAll();
 		Assert.assertNotNull(findAll);

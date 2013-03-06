@@ -20,6 +20,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<context:component-scan base-package="com.capella.controllers" />
+	<context:component-scan base-package="com.capella.login.controllers" />
 
 </beans>

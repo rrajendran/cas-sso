@@ -5,9 +5,9 @@ import org.jasig.cas.authentication.handler.AuthenticationException;
 import org.jasig.cas.authentication.principal.UsernamePasswordCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.capella.database.entity.User;
 import com.capella.database.repositories.UserDao;
 
 @Service
@@ -26,9 +26,12 @@ public class ValidateUserHandler extends
             password);
         System.out.println("encryptedPassword :" + encryptedPassword);
         try {
-            final String dbPassword = userDao.getPassword(username);
-            System.out.println("dbPassword : " + dbPassword);
-            return dbPassword.equals(encryptedPassword);
+            final User user = userDao.findUser(username);
+            System.out.println("dbPassword : " + user);
+            if(user != null)
+            	return user.getPassword().equals(encryptedPassword);
+            else 
+            	return false;
         } catch (final IncorrectResultSizeDataAccessException e) {
             return false;
         }

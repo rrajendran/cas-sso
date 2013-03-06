@@ -10,7 +10,7 @@ public interface UserDao {
 
 	List<User> findAll();
 
-	String getPassword(String username);
+	User findUser(String username);
 
 	void delete();
 

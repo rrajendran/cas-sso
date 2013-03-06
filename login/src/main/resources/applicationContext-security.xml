@@ -7,9 +7,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
-	<context:annotation-config />
-	<context:component-scan base-package="com.capella" />
 	<import resource="classpath:/com/capella/database/config/applicationContext.xml"/>
+	<context:annotation-config />
+	<context:component-scan base-package="com.capella.login.controllers" />
     <sec:http entry-point-ref="casProcessingFilterEntryPoint">
         <sec:intercept-url pattern="/secure/extreme/**" access="ROLE_SUPERVISOR" requires-channel="http"/>
         <sec:intercept-url pattern="/secure/**" access="ROLE_USER"/>
@@ -143,7 +143,7 @@
     <!-- This filter redirects to the CAS Server to signal Single Logout should be performed -->
     <bean id="requestSingleLogoutFilter"
           class="org.springframework.security.web.authentication.logout.LogoutFilter">
-        <constructor-arg value="https://localhost:8443/cas/logout"/>
+        <constructor-arg value="https://localhost:8443/cas/logout?redirect=http://localhost:8080/login/j_spring_cas_security_check"/>
         <constructor-arg>
             <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
         </constructor-arg>

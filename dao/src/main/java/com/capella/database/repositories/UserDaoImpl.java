@@ -26,12 +26,12 @@ public class UserDaoImpl implements UserDao{
 		return entityManager.createQuery("From User", User.class).getResultList();
 	}
 	@Override
-	public String getPassword(String username) {
+	public User findUser(String username) {
 		Query query = entityManager.createQuery("from User where lower(username) = lower(:username)",User.class);
 		query.setParameter("username", username);
 		User singleResult = (User) query.getSingleResult();
 		if(singleResult != null)
-			return singleResult.getPassword();
+			return singleResult;
 		return null;
 	}
 	@Override

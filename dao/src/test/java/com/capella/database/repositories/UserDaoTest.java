@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 
 import junit.framework.Assert;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,7 @@ import com.capella.database.entity.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/com/capella/database/config/applicationContext.xml")
 @TransactionConfiguration(defaultRollback=false, transactionManager="transactionManager")
-@Ignore
-public class UserRepositoryTest {
+public class UserDaoTest {
 	
 	@Autowired
 	private UserDao userDao;
@@ -29,7 +27,7 @@ public class UserRepositoryTest {
 	EntityManager entityManager;
 	@Test
 	public void testSaveS() {
-		User user = new User("test1","test123");
+		User user = new User("test1","test123", "ROLE_USER,ROLE_SUPERVISOR");
 		userDao.save(user);
 		List<User> findAll = userDao.findAll();
 		Assert.assertNotNull(findAll);

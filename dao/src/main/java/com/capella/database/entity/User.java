@@ -15,11 +15,13 @@ public class User implements Serializable {
 
     private String username;
     private String password;
+    private String authorities;
     
-    public User(String username, String password) {
+    public User(String username, String password, String authorities) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.authorities = authorities;
 	}
 	public User() {
 		
@@ -42,8 +44,17 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Column(name = "authorities")
+	public String getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(String authorities) {
+		this.authorities = authorities;
+	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + "]";
+		return "User [username=" + username + ", password=" + password
+				+ ", authorities=" + authorities + "]";
 	}
 }
