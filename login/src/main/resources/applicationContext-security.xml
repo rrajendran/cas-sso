@@ -10,10 +10,12 @@
 	<import resource="classpath:/com/capella/database/config/applicationContext.xml"/>
 	<context:annotation-config />
 	<context:component-scan base-package="com.capella.login.controllers" />
-    <sec:http entry-point-ref="casProcessingFilterEntryPoint">
-        <sec:intercept-url pattern="/secure/extreme/**" access="ROLE_SUPERVISOR" requires-channel="http"/>
-        <sec:intercept-url pattern="/secure/**" access="ROLE_USER"/>
+    <sec:http entry-point-ref="casProcessingFilterEntryPoint" auto-config="true">
+    	<sec:intercept-url pattern="/secure/extreme/**" access="ROLE_SUPERVISOR" requires-channel="http"/>
+        <sec:intercept-url pattern="/secure/**" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/**" access="ROLE_USER"/>
         <sec:logout logout-success-url="/cas-logout.jsp"/>
+        <sec:form-login login-page="/cas/login"/>
         <sec:custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER"/>
         <sec:custom-filter ref="singleLogoutFilter" before="CAS_FILTER"/>
         <sec:custom-filter ref="casAuthenticationFilter" after="CAS_FILTER"/>
@@ -41,12 +43,12 @@
         <property name="authenticationManager" ref="authenticationManager"/>
         <property name="authenticationFailureHandler">
             <bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
-                <property name="defaultFailureUrl" value="/casfailed.jsp"/>
+                <property name="defaultFailureUrl" value="/loginFailed"/>
             </bean>
         </property>
         <!-- 登录成功后的页面，如果是固定的。否则 ref="authenticationSuccessHandler" -->
         <property name="authenticationSuccessHandler">
-            <bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+            <bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
                 <property name="defaultTargetUrl" value="/"/>
             </bean>
         </property>
@@ -143,7 +145,7 @@
     <!-- This filter redirects to the CAS Server to signal Single Logout should be performed -->
     <bean id="requestSingleLogoutFilter"
           class="org.springframework.security.web.authentication.logout.LogoutFilter">
-        <constructor-arg value="https://localhost:8443/cas/logout?redirect=http://localhost:8080/login/j_spring_cas_security_check"/>
+        <constructor-arg value="https://localhost:8443/cas/logout"/>
         <constructor-arg>
             <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
         </constructor-arg>
