@@ -1,0 +1,25 @@
+# User primary group
+dn: cn=rrajendran,ou=groups,dc=capella,dc=com
+cn: rrajendran
+objectClass: top
+objectClass: posixGroup
+gidNumber: 10000
+
+# User account
+dn: uid=rrajendran,ou=people,dc=capella,dc=com
+cn: John Smith
+givenName: John
+sn: Smith
+uid: rrajendran
+uidNumber: 10000
+gidNumber: 10000
+homeDirectory: /home/rrajendran
+mail: rrajendran@dev.local
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+loginShell: /bin/bash
+userPassword: {SSHA}yLhAVAe1pDEF7+v8TZz2Alwoj33mxFML
