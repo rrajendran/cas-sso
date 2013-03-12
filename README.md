@@ -51,24 +51,14 @@ Import into keystore
 Tomcat Configurations
 =====================
 1. Go to conf/server.xml 
-2. Go to line where it says and uncomment it out
-<pre>
- <Connector 
-	SSLCertificateFile="<path_to_certificate>/server.crt" 
-	SSLEnabled="true" 
-	SSLProtocol="TLSv1" 
-	SSLVerifyClient="optional" 
-	maxThreads="200" 
-	port="8443" 
-	protocol="HTTP/1.1" scheme="https" secure="true"/>
+2. Go to line where it says and uncomment it out where it reads [port="8443"]
 
-</pre>
 How to run
 ==========
 
-1. Access customer website : [http://localhost:8080/customer/]
+1. Access customer website : <a href="http://localhost:8080/customer/">Customer</a>
 	This should redirect you to CAS login screen. Once your credentials are entered, you will redirect to customer website. To see the list of user look at [single-sign-on/cas/src/main/resources/database/users.sql]
-2. Now access the second bank website [http://localhost:8080/bank/] which should be authenticated previously will be redirected to bank website.
+2. Now access the second bank website <a href="http://localhost:8080/bank/">Bank</a> which should be authenticated previously will be redirected to bank website.
 
 
 
