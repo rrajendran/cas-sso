@@ -1,12 +1,14 @@
 cas
 ===
 
-CAS - Single Sign On Example
+CAS - Single Sign On Example. CAS server is running at [https://localhost:8443/cas/]. The users are authenticated using sha1 password encoder. The project demonstrates application of cas using two website emulating single sign on.
 
 
 Remove exisiting certificates
 ==============================
 keytool -delete -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat
+
+keytool -delete -alias tomcat
 
 <password>
 
@@ -17,7 +19,7 @@ keytool -genkey -alias tomcat -keyalg RSA -validity 365
 
 Enter keystore password:changeit
 What is your first and last name?
-  [Unknown]:  Ramesh Rajendran
+  [Unknown]:  localhost
 What is the name of your organizational unit?
   [Unknown]:  Customers
 What is the name of your organization?
@@ -59,6 +61,15 @@ Tomcat Configurations
 	maxThreads="200" 
 	port="8443" 
 	protocol="HTTP/1.1" scheme="https" secure="true"/>
+
+
+How to run
+==========
+
+1. Access customer website : [http://localhost:8080/customer/]
+	This should redirect you to CAS login screen. Once your credentials are entered, you will redirect to customer website. To see the list of user look at [single-sign-on/cas/src/main/resources/database/users.sql]
+2. Now access the second bank website [http://localhost:8080/bank/] which should be authenticated previously will be redirected to bank website.
+
 
 
 

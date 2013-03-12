@@ -10,7 +10,7 @@
 		<module>sso-common</module>
 		<module>dao</module>
 		<module>cas</module>
-		<module>login</module>
+		<module>customer</module>
 		<module>bank</module>
 	</modules>
 	<dependencies>
