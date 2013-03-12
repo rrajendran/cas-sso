@@ -6,18 +6,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
-	<import resource="classpath:/com/capella/common/security/applicationContext.xml" />
 	<import resource="classpath:/com/capella/database/config/applicationContext.xml" />
-
+	<import resource="classpath:/com/capella/common/security/applicationContext.xml" />
 	<context:annotation-config />
-	<context:component-scan base-package="com.capella.login.controllers" />
+	<context:component-scan base-package="com.capella.bank.controllers" />
 	<sec:http entry-point-ref="casProcessingFilterEntryPoint"
 		auto-config="true">
 		<sec:intercept-url pattern="/secure/extreme/**"
 			access="ROLE_SUPERVISOR" requires-channel="http" />
 		<sec:intercept-url pattern="/secure/**" access="ROLE_ADMIN" />
 		<sec:intercept-url pattern="/**" access="ROLE_USER" />
-		<sec:logout logout-success-url="/cas-logout.jsp" />
+		<sec:logout logout-success-url="/login/cas-logout.jsp" />
 		<sec:form-login login-page="/cas/login"
 			authentication-success-handler-ref="" />
 		<sec:custom-filter ref="requestSingleLogoutFilter"
@@ -27,14 +26,10 @@
 			after="CAS_FILTER" />
 	</sec:http>
 
-	<!-- 动态设置登录成功以后跳转的页面 -->
-	<!--<bean id="authenticationSuccessHandler" class="me.batizhao.security.MyAuthenticationSuccessHandler"> 
-		<property name="alwaysUseDefaultTargetUrl" value="false"/> </bean> -->
-
 	<!-- 客户端配置 -->
 	<bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
 		<property name="service"
-			value="http://localhost:8080/login/j_spring_cas_security_check" />
+			value="http://localhost:8080/bank/j_spring_cas_security_check" />
 		<property name="sendRenew" value="false" />
 	</bean>
 

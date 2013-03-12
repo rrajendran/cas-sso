@@ -1,4 +1,4 @@
-package com.capella.login.controllers;
+package com.capella.bank.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +18,7 @@ public class HomeController {
 	@RequestMapping(value={"/index","/"} , method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request){
 		ModelAndView model = new ModelAndView("home");
-		model.addObject("message", "Welcome to customer application");
+		model.addObject("message", "Welcome to bank application");
 		model.addObject("ticket", getProxyTicket(request));
 		
 		CasAuthenticationToken principal = (CasAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
@@ -35,23 +35,7 @@ public class HomeController {
 		LOGGER.info("Ticket : " + proxyTicket);*/
 		return "";
 	}
-
-
-	@RequestMapping(value="/secure/index" , method = RequestMethod.GET)
-	public ModelAndView secure(HttpServletRequest request){
-		ModelAndView model = new ModelAndView("/secure/index");
-		model.addObject("principal", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		model.addObject("message", "Welcome to Secure page");
-		return model;
-	}
-
-	@RequestMapping(value="/secure/extreme/index" , method = RequestMethod.GET)
-	public ModelAndView extremeSecure(HttpServletRequest request){
-		ModelAndView model = new ModelAndView("/secure/extreme/index");
-		model.addObject("principal", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-		model.addObject("message", "Welcome to Extreme secure page");
-		return model;
-	}
+	
 	@RequestMapping(value="/loginFailed" , method = RequestMethod.GET)
 	public ModelAndView loginFailed(HttpServletRequest request){
 		ModelAndView model = new ModelAndView("/casfailed");

@@ -14,14 +14,15 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<context:annotation-config />
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	<context:component-scan base-package="com.capella.database" />
 	
-	<context:component-scan base-package="com.capella" />
+	<context:property-placeholder location="classpath*:/com/capella/**/*.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/cas" />
-		<property name="username" value="root" />
-		<property name="password" value="welcome1" />
+		<property name="driverClassName" value="${driver.class.name}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
 	</bean>
 	
 	<bean id="pum" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
