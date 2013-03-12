@@ -8,15 +8,15 @@ Remove exisiting certificates
 ==============================
 <pre>keytool -delete -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat</pre>
 
-keytool -delete -alias tomcat
+<pre>keytool -delete -alias tomcat</pre>
 
 <password>
 
 
 Create certificate
 ==============================
-keytool -genkey -alias tomcat -keyalg RSA -validity 365
-
+<pre>keytool -genkey -alias tomcat -keyalg RSA -validity 365</pre>
+<pre>
 Enter keystore password:changeit
 What is your first and last name?
   [Unknown]:  localhost
@@ -36,23 +36,23 @@ Is CN=Ramesh Rajendran, OU=Customers, O="Capella Technologies Ltd.,", L=Manchest
 Enter key password for <tomcat>
 	(RETURN if same as keystore password):changeit
 Re-enter new password: changeit
-
+</pre>
 
 Export Certificate
 ==================
-keytool -export -alias tomcat -file server.crt
+<pre>keytool -export -alias tomcat -file server.crt</pre>
 
 
 Import into keystore
 ====================
-keytool -import -file server.crt -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat
+<pre>keytool -import -file server.crt -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat</pre>
 
 
 Tomcat Configurations
 =====================
 1. Go to conf/server.xml 
 2. Go to line where it says and uncomment it out
-
+<pre>
  <Connector 
 	SSLCertificateFile="<path_to_certificate>/server.crt" 
 	SSLEnabled="true" 
@@ -62,7 +62,7 @@ Tomcat Configurations
 	port="8443" 
 	protocol="HTTP/1.1" scheme="https" secure="true"/>
 
-
+</pre>
 How to run
 ==========
 
