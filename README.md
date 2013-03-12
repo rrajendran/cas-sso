@@ -1,5 +1,5 @@
-cas
-===
+CAS - Central Authentication Service
+====================================
 
 CAS - Single Sign On Example. CAS server is running at [https://localhost:8443/cas/]. The users are authenticated using sha1 password encoder. The project demonstrates application of cas using two website emulating single sign on.
 
