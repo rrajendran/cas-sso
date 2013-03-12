@@ -6,7 +6,7 @@ CAS - Single Sign On Example. CAS server is running at [https://localhost:8443/c
 
 Remove exisiting certificates
 ==============================
-keytool -delete -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat
+<pre>keytool -delete -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat</pre>
 
 keytool -delete -alias tomcat
 
