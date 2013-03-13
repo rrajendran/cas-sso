@@ -55,10 +55,13 @@ Tomcat Configurations
 
 How to run
 ==========
-
-1. Access customer website : <a href="http://localhost:8080/customer/">Customer</a>
+1. cd single-sign-on
+2. mvn clean install
+3. copy cas.war, customer.war and bank.war to tomcat webapps folder
+4. Start the tomcat
+5. Access customer website : <a href="http://localhost:8080/customer/">Customer</a>
 	This should redirect you to CAS login screen. Once your credentials are entered, you will redirect to customer website. To see the list of user look at [single-sign-on/cas/src/main/resources/database/users.sql]
-2. Now access the second bank website <a href="http://localhost:8080/bank/">Bank</a> which should be authenticated previously will be redirected to bank website.
+6. Now access the second bank website <a href="http://localhost:8080/bank/">Bank</a> which should be authenticated previously will be redirected to bank website.
 
 
 
