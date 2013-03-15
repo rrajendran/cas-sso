@@ -1,0 +1,54 @@
+body {
+	margin: 50px 0px;
+	padding: 0px;
+	text-align: center;
+	background-color: rgb(230, 230, 230);
+}
+
+#box {
+	width: 80%;
+	height: 900px;
+	margin: 0px auto;
+	text-align: left;
+	padding: 15px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+#sidebar {
+	width: 10%;
+	height: 200px;
+	margin: 0px auto;
+	text-align: left;
+	float: left;
+	border-right: 1px solid #ccc;
+}
+
+#content {
+	width: 90%%;
+	margin: 0px auto;
+	text-align: left;
+	padding: 15px;
+}
+
+.details {
+	padding: 10px;
+	background-color: scrollbar;
+	margin: 5px;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 2px;
+}
+
+ul li {
+	background-color: rgb(231, 230, 230);
+	padding: 10px;
+	cursor: pointer;
+}
+
+#ticketContent{
+	display: none;
+}

@@ -214,7 +214,6 @@
 		<jdbc:script location="classpath:database/users.sql" />
 	</jdbc:initialize-database>
 
-
 	<bean id="defaultPasswordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"
 		p:characterEncoding="UTF-8">
 		<constructor-arg index="0" value="SHA1" />

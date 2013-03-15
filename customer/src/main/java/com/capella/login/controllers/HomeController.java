@@ -19,21 +19,12 @@ public class HomeController {
 	public ModelAndView home(HttpServletRequest request){
 		ModelAndView model = new ModelAndView("home");
 		model.addObject("message", "Welcome to customer application");
-		model.addObject("ticket", getProxyTicket(request));
 		
 		CasAuthenticationToken principal = (CasAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
 		model.addObject("principal", principal);
 		model.addObject("credentials", principal.getCredentials());
+		model.addObject("userDetails", principal.getUserDetails());
 		return model;
-	}
-
-
-	private String getProxyTicket(HttpServletRequest request) {
-		/*final CasAuthenticationToken token = (CasAuthenticationToken) request.getUserPrincipal();
-		final String proxyTicket = token.getAssertion().getPrincipal().getProxyTicketFor(TARGET_URL);
-		String proxyResponse = CommonUtils.getResponseFromServer(serviceUrl, "UTF-8");
-		LOGGER.info("Ticket : " + proxyTicket);*/
-		return "";
 	}
 
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
 <h1>Secure Page</h1>
@@ -12,10 +13,10 @@ or if you've authenticated this session.<br><br>
 
 
 <p>
-	<a href="/login/index">Home</a>
+	<a href="<c:url value="/index" />">Home</a>
 </p>
 <p>
-	<a href="/login/secure/extreme/index">Extreme Secure</a>
+	<a href="<c:url value="/secure/extreme/index" />">Extreme Secure</a>
 </p>
 </body>
 </html>

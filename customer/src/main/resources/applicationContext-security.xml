@@ -3,12 +3,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	<import resource="classpath:/com/capella/common/security/applicationContext.xml" />
 	<import resource="classpath:/com/capella/database/config/applicationContext.xml" />
-
+	
 	<context:annotation-config />
 	<context:component-scan base-package="com.capella.login.controllers" />
 	<sec:http entry-point-ref="casProcessingFilterEntryPoint"
@@ -18,8 +20,7 @@
 		<sec:intercept-url pattern="/secure/**" access="ROLE_ADMIN" />
 		<sec:intercept-url pattern="/**" access="ROLE_USER" />
 		<sec:logout logout-success-url="/cas-logout.jsp" />
-		<sec:form-login login-page="/cas/login"
-			authentication-success-handler-ref="" />
+		<sec:form-login login-page="/cas/login" />
 		<sec:custom-filter ref="requestSingleLogoutFilter"
 			before="LOGOUT_FILTER" />
 		<sec:custom-filter ref="singleLogoutFilter" before="CAS_FILTER" />
@@ -27,16 +28,12 @@
 			after="CAS_FILTER" />
 	</sec:http>
 
-	<!-- 动态设置登录成功以后跳转的页面 -->
-	<!--<bean id="authenticationSuccessHandler" class="me.batizhao.security.MyAuthenticationSuccessHandler"> 
-		<property name="alwaysUseDefaultTargetUrl" value="false"/> </bean> -->
-
-	<!-- 客户端配置 -->
+	<!-- Service configurations -->
 	<bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
 		<property name="service"
 			value="https://localhost:8443/customer/j_spring_cas_security_check" />
 		<property name="sendRenew" value="false" />
 	</bean>
 
-	
+
 </beans>

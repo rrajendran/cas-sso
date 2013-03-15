@@ -12,6 +12,7 @@
 		<module>cas</module>
 		<module>customer</module>
 		<module>bank</module>
+		<module>admin</module>
 	</modules>
 	<dependencies>
 		<dependency>
