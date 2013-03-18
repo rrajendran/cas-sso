@@ -30,7 +30,6 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-
 	<!-- | This bean declares our AuthenticationManager. The CentralAuthenticationService 
 		service bean | declared in applicationContext.xml picks up this AuthenticationManager 
 		by reference to its id, | "authenticationManager". Most deployers will be 
@@ -212,6 +211,7 @@
 	</bean>
 	<jdbc:initialize-database>
 		<jdbc:script location="classpath:database/users.sql" />
+		<!-- <jdbc:script location="classpath:database/ticketRegistry.sql" /> -->
 	</jdbc:initialize-database>
 
 	<bean id="defaultPasswordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"
