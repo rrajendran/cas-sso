@@ -8,10 +8,5 @@
         <class>org.jasig.cas.ticket.TicketGrantingTicketImpl</class>
         <class>org.jasig.cas.ticket.ServiceTicketImpl</class>
         <class>org.jasig.cas.ticket.registry.support.JpaLockingStrategy$Lock</class>
-        <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
-        </properties>
     </persistence-unit>
 </persistence>

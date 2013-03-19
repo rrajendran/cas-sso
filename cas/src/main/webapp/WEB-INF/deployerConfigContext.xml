@@ -187,7 +187,7 @@
 		</property>
 	</bean>
 
-
+<!-- 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -208,11 +208,7 @@
 			<value>password</value>
 		</property>
 		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<jdbc:initialize-database>
-		<jdbc:script location="classpath:database/users.sql" />
-		<!-- <jdbc:script location="classpath:database/ticketRegistry.sql" /> -->
-	</jdbc:initialize-database>
+	</bean>-->
 
 	<bean id="defaultPasswordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder"
 		p:characterEncoding="UTF-8">
