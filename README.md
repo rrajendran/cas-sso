@@ -1,11 +1,10 @@
-CAS - Central Authentication Service
-====================================
+#CAS - Central Authentication Service
+[![Build Status](https://travis-ci.org/rrajendran/cas-sso.svg)](https://travis-ci.org/rrajendran/cas-sso)
 
 CAS - Single Sign On Example. CAS server is running at [https://localhost:8443/cas/]. The users are authenticated using sha1 password encoder. The project demonstrates application of cas using two website emulating single sign on.
 
 
-Remove exisiting certificates
-==============================
+##Remove exisiting certificates
 <pre>keytool -delete -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat</pre>
 
 <pre>keytool -delete -alias tomcat</pre>
@@ -13,8 +12,7 @@ Remove exisiting certificates
 <password>
 
 
-Create certificate
-==============================
+##Create certificate
 <pre>keytool -genkey -alias tomcat -keyalg RSA -validity 365</pre>
 <pre>
 Enter keystore password:changeit
@@ -38,23 +36,19 @@ Enter key password for <tomcat>
 Re-enter new password: changeit
 </pre>
 
-Export Certificate
-==================
+##Export Certificate
 <pre>keytool -export -alias tomcat -file server.crt</pre>
 
 
-Import into keystore
-====================
+##Import into keystore
 <pre>keytool -import -file server.crt -keystore $JAVA_HOME/jre/lib/security/cacerts -alias tomcat</pre>
 
 
-Tomcat Configurations
-=====================
+#Tomcat Configurations
 1. Go to conf/server.xml 
 2. Go to line where it says and uncomment it out where it reads [port="8443"]
 
-How to run
-==========
+##How to run
 1. cd single-sign-on
 2. mvn clean install
 3. copy cas.war, customer.war and bank.war to tomcat webapps folder
