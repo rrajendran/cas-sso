@@ -1,12 +1,7 @@
 package com.capella.database.repositories;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import com.capella.database.entity.User;
 import junit.framework.Assert;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +9,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.capella.database.entity.User;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/com/capella/database/config/applicationContext.xml")
+@ContextConfiguration("classpath:applicationContext.xml")
 @TransactionConfiguration(defaultRollback=false, transactionManager="transactionManager")
 public class UserDaoTest {
 	
