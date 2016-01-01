@@ -3,4 +3,4 @@ jdk: oraclejdk8
 services:
     -mysql
 before_install:
-  - mysql -e "create database IF NOT EXISTS case;" -uroot
+  - mysql -e "create database IF NOT EXISTS cas;" -uroot
